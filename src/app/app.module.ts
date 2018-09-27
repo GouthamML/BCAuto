@@ -9,6 +9,8 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { SettingsPage } from '../pages/settings/settings';
 import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+
 
 
 
@@ -24,7 +26,8 @@ import { WeatherProvider } from '../providers/weather/weather';
     HomePage,
     TabsPage,
     SettingsPage,
-    LoginPage
+    LoginPage,
+    SignupPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { WeatherProvider } from '../providers/weather/weather';
     HomePage,
     TabsPage,
     SettingsPage,
-    LoginPage
+    LoginPage,
+    SignupPage
   ],
   providers: [
     StatusBar,

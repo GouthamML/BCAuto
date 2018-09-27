@@ -40,12 +40,15 @@ $colors: (
   light:      #ffffff,
   dark:       #222,
   tabIcons:   #19b5fe,
-  title:      #000
+  tabIconsInactive: #d2d2d2,
+  title:#000,
+  backgroundTab: #03a9f4
 );
 
-$tabs-md-tab-color-active: color($colors,tabIcons);
-$toolbar-md-background:color($colors,light);
-
+$tabs-md-tab-color-active: color($colors,light);
+$tabs-md-tab-color-inactive: color($colors,tabIconsInactive);
+$toolbar-md-background:color($colors, backgroundTab);
+$tabs-md-background:color($colors, backgroundTab);
 
 // App iOS Variables
 // --------------------------------------------------
