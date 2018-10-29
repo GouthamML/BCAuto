@@ -3,5 +3,9 @@
   "integrations": {
     "cordova": {}
   },
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "proxies" : [{
+    "path" : "/api",
+    "proxyUrl" : "http:123.89.90/"
+  }]
 }

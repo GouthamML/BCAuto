@@ -2,6 +2,13 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { HttpModule } from '@angular/http'
+import { HTTP } from '@ionic-native/http';
+import { HttpClientModule } from '@angular/common/http'
+
+
+
+
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -17,6 +24,9 @@ import { SignupPage } from '../pages/signup/signup';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { WeatherProvider } from '../providers/weather/weather';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { Toast } from '@ionic-native/toast';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +41,11 @@ import { WeatherProvider } from '../providers/weather/weather';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule,
+    HttpModule
+    
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,13 +56,18 @@ import { WeatherProvider } from '../providers/weather/weather';
     TabsPage,
     SettingsPage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    
+    
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    WeatherProvider
+    WeatherProvider,
+    BarcodeScanner,
+  Toast,
+  HTTP
   ]
 })
 export class AppModule {}
