@@ -23,10 +23,12 @@ const httpOptions = {
   templateUrl: 'home.html'
 })
 export class HomePage {
-  jsonBodyData: any;
+  jsonOfBarcode: any;
   headersData:any;
+  jsonBody:any;
   url: any;
   details: any;
+  test:any;
   output: any;
   code:any;
 
@@ -37,27 +39,54 @@ export class HomePage {
   }
 
    scan() {
-    this.barcodeScanner.scan().then((barcodedata) => {
-      console.log(barcodedata.text);
-      this.jsonBodyData = barcodedata.text;
-      // this.jsonBodyData = {}
-      let url = "https://2E42370EAFB342A99759C7B7378C46D0.blockchain.ocp.oraclecloud.com:443/restproxy1/bcsgw/rest/v1/transaction/invocation";
-      let jsonbody = {
+     let i;
+      this.barcodeScanner.scan().then((barcodedata) => {
+      this.jsonOfBarcode = JSON.parse(barcodedata.text);
       
-        "channel":"default",
-        "chaincode":"chain",
-        "method":"readVehiclePart",
-        "args":["ser123","honda","12062012","mirror","honda","hyderabad"],
-        "chaincodeVer":"v1"
+      let url = "https://2E42370EAFB342A99759C7B7378C46D0.blockchain.ocp.oraclecloud.com:443/restproxy1/bcsgw/rest/v1/transaction/invocation";
+      console.log('###############################');
+      /*
+      
+      formatting the JSON payload
+
+      */
+     let jsonBody = {
+       'channel' : 'default',
+       'chaincode' : 'chain',
+       'args' : []
+     }; 
+
+      if (this.jsonOfBarcode.chassisNumber == null){
+        jsonBody["method"] = "readVehiclePart";
       }
+      for(let i in this.jsonOfBarcode) {
+        jsonBody.args.push(this.jsonOfBarcode[i]);
+      } 
+      jsonBody["chaincodeVer"] = "v1";
+      console.log(jsonBody);
+      this.test = this.jsonOfBarcode;
+      
+      // let jsonbody = {
+      
+      //   "channel":"default",
+      //   "chaincode":"chain",
+      //   "method":"readVehiclePart",
+      //   "args":["ser123","honda","12062012","mirror","honda","hyderabad"],
+      //   "chaincodeVer":"v1"
+      // }
   
-      this.httpclient.post(url,this.jsonBodyData,httpOptions)
+      this.httpclient.post(url,jsonBody,httpOptions)
       .subscribe(response => {
         console.log(response);
         console.log(response);
         localStorage.setItem('res', response['returnCode']);
       });
     })
+    this.code = localStorage.getItem('res');
+  }
+
+
+  local(){
     this.code = localStorage.getItem('res');
   }
 
