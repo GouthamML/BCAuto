@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map'
 import { HttpClient } from '@angular/common/http'
 import { HttpHeaders } from '@angular/common/http';
 import { stringify } from '@angular/core/src/util';
+import { InfoPage } from '../info/info';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -38,6 +39,58 @@ export class HomePage {
     //  this.callFunc();
   }
 
+  openAlertSuccess() {
+    let alert = this.alertCtrl.create({
+      title: 'Part Exists',
+      message: 'Do you want to know more abou it?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            console.log('Buy clicked');
+            this.navCtrl.push(InfoPage);
+            
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  openAlertFailure() {
+    let alert = this.alertCtrl.create({
+      title: 'Part Doesn\'t Exists',
+      message: 'Do you want to add it to OBC?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            console.log('Buy clicked');
+            this.navCtrl.push(InfoPage);
+            
+          }
+        }
+      ]
+    });
+    alert.present();
+
+  }
+
+
    scan() {
      let i;
       this.barcodeScanner.scan().then((barcodedata) => {
@@ -59,6 +112,9 @@ export class HomePage {
       if (this.jsonOfBarcode.chassisNumber == null){
         jsonBody["method"] = "readVehiclePart";
       }
+      else{
+        jsonBody["method"] = "initVehiclePart";
+      }
       for(let i in this.jsonOfBarcode) {
         jsonBody.args.push(this.jsonOfBarcode[i]);
       } 
@@ -66,29 +122,24 @@ export class HomePage {
       console.log(jsonBody);
       this.test = this.jsonOfBarcode;
       
-      // let jsonbody = {
-      
-      //   "channel":"default",
-      //   "chaincode":"chain",
-      //   "method":"readVehiclePart",
-      //   "args":["ser123","honda","12062012","mirror","honda","hyderabad"],
-      //   "chaincodeVer":"v1"
-      // }
-  
       this.httpclient.post(url,jsonBody,httpOptions)
       .subscribe(response => {
-        console.log(response);
-        console.log(response);
-        localStorage.setItem('res', response['returnCode']);
+        localStorage.setItem('res', JSON.stringify(response));
+        if( response['returnCode'] == "Success" ){
+          this.openAlertSuccess();
+        }
+        else{
+          this.openAlertFailure();
+        }
+        
       });
     })
-    this.code = localStorage.getItem('res');
+    localStorage.setItem('body', JSON.stringify(this.jsonBody));
+    localStorage.setItem('barCode', JSON.stringify(this.jsonOfBarcode)); 
+  
   }
 
-
-  local(){
-    this.code = localStorage.getItem('res');
-  }
+ 
 
   httpClientPostMethod() {
     let url = "https://2E42370EAFB342A99759C7B7378C46D0.blockchain.ocp.oraclecloud.com:443/restproxy1/bcsgw/rest/v1/transaction/invocation";
@@ -105,7 +156,13 @@ export class HomePage {
     this.httpclient.post(url,jsonbody,httpOptions)
     .subscribe(response => {
       console.log(response);
-      localStorage.setItem('res', response['returnCode']);
+      if( response['returnCode'] == "Success" ){
+        this.openAlertSuccess();
+      }
+      else{
+        this.openAlertFailure();
+      }
+      localStorage.setItem('res', JSON.stringify(response));
     });
     this.code = localStorage.getItem('res');
     console.log(this.code);
