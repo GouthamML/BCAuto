@@ -173,7 +173,7 @@ export class HomePage {
       */
      let jsonBody = {
        'channel' : 'default',
-       'chaincode' : 'chain',
+       'chaincode' : 'chain1',
        'args' : []
      }; 
 
