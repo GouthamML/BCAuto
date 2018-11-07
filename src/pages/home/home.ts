@@ -25,6 +25,7 @@ const httpOptions = {
   templateUrl: 'home.html'
 })
 export class HomePage {
+  credentials = {}
   jsonOfBarcode: any;
   headersData:any;
   jsonBody:any;
@@ -55,7 +56,7 @@ export class HomePage {
   }
   else{
     body["method"] = "initVehicle";
-  }
+}
   console.log("barcode type" + Object.keys(barcode));
 
   for(let i=0; i < Object.keys(barcode).length; i++){
@@ -93,7 +94,7 @@ export class HomePage {
   openAlertSuccess() {
     let alert = this.alertCtrl.create({
       title: 'Part Exists',
-      message: 'Do you want to know more abou it?',
+      message: 'Do you want to know more about it?',
       buttons: [
         {
           text: 'Cancel',
@@ -155,12 +156,9 @@ export class HomePage {
     alert.present();
 
   }
-
-  
-
-
-   scan() {
+scan() {
      let i;
+     this.credentials = JSON.parse(localStorage.getItem('credentials'));
       this.barcodeScanner.scan().then((barcodedata) => {
       this.jsonOfBarcode = JSON.parse(barcodedata.text);
       
@@ -176,6 +174,8 @@ export class HomePage {
        'chaincode' : 'chain1',
        'args' : []
      }; 
+
+     
 
       if (this.jsonOfBarcode.chassisNumber == null){
         jsonBody["method"] = "readVehiclePart";
@@ -203,20 +203,31 @@ export class HomePage {
       .subscribe(response => {
         localStorage.setItem('res', JSON.stringify(response));
         localStorage.setItem('body', JSON.stringify(jsonBody));
+        console.log("Credentials \n"+this.credentials["username"]);
         localStorage.setItem('barCode', JSON.stringify(this.jsonOfBarcode));  //response is from blockcahin
         if( response['returnCode'] == "Success" ){
           console.log("response for success" + response);
           this.openAlertSuccess();
         }
         else{
+          if( (this.jsonOfBarcode.chassisNumber!=null && this.credentials["username"]=="manufacturer") || (this.jsonOfBarcode.SerialNumber!=null && this.credentials["username"]=="supplier") ){
           this.openAlertFailure();
+          }
+          else{
+            let alert = this.alertCtrl.create({
+              title: 'Access Denied!',
+              subTitle: 'You can not perform this operation',
+              buttons: ['Done']
+            });
+            alert.present();
+          }
         }
         
       });
     })
     
   
-  }
+}
 
  
 

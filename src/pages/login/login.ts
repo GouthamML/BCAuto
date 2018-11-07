@@ -42,6 +42,7 @@ export class LoginPage {
   }
   openSignup() {
     console.log(this.credentials);
+    localStorage.setItem("credentials", JSON.stringify(this.credentials));
     this.navCtrl.push(TabsPage);
   }
 
