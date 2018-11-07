@@ -26,12 +26,12 @@
             
             <ion-item class="itemClass" width-100>
                 <ion-label color="#c1c0cd" floating style="text-align: center;">Username</ion-label>
-                <ion-input></ion-input>
+                <ion-input type = "text" [(ngModel)]="credentials.username" name = "username"></ion-input>
               </ion-item>
           
               <ion-item class="itemClass">
                   <ion-label color="#c1c0cd" floating style="text-align: center;">password</ion-label>
-                  <ion-input type="password"></ion-input>
+                  <ion-input type="password" [(ngModel)]="credentials.password" name = "password"></ion-input>
                 </ion-item>
                 
                 <button ion-button block style="left:5%; width:95%;margin-top:10%;" (click)='openSignup()'>Login</button>

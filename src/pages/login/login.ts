@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
+import { TabsPage } from '../tabs/tabs';
+
+
 
 /**
  * Generated class for the LoginPage page.
@@ -9,12 +12,27 @@ import { SignupPage } from '../signup/signup';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+const userData = {
+  "manufacturer": {
+      "password": "manufacturer"
+  },
+  "dealer":{
+      "password" : "dealer"    
+  },
+  "supplier":
+  {
+      "password" : "supplier"
+  }
+
+}
+
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  credentials = {}
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -23,7 +41,8 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
   openSignup() {
-    this.navCtrl.push(SignupPage);
+    console.log(this.credentials);
+    this.navCtrl.push(TabsPage);
   }
 
 }

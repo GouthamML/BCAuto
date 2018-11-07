@@ -1,0 +1,13 @@
+{
+    "manufacturer": {
+        "password": "manufacturer"
+    },
+    "dealer":{
+        "password" : "dealer"    
+    },
+    "supplier":
+    {
+        "password" : "supplier"
+    }
+
+}
