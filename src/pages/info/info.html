@@ -19,6 +19,6 @@
       <b>{{data}}</b> - {{response[data]}}
     </ion-item>
   </ion-list>
-  <button ion-button (click)='transfer()'>Transfer</button>
+  <button ion-button *ngIf = "show" (click)='transfer()' >Transfer</button>
 
 </ion-content>
