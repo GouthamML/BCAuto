@@ -1,4 +1,13 @@
 page-login {
+    .backgroundLogin{
+        position: relative;
+        
+    }
+    .image{
+        position: absolute;
+        z-index: -5;
+        opacity: 0.5;
+    }
     .loginPage{
         background-image: url("../../assets/imgs/Untitled.png");
         background-size: cover;
