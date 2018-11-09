@@ -20,5 +20,10 @@
     </ion-item>
   </ion-list>
   <button ion-button *ngIf = "show" (click)='transfer()' >Transfer</button>
+  <ion-card (swipe)="swipeEvent($e)">  
+    <ion-item>
+      Swipe right to transfer Ownership
+    </ion-item>
+  </ion-card>
 
 </ion-content>

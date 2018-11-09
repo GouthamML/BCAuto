@@ -125,4 +125,50 @@ export class InfoPage {
     alert.present();
   }
 
+  swipeEvent(e){
+    this.jsonbody.args.push(this.response["owner"]);
+    let alert = this.alertCtrl.create({
+      title: 'Transfer',
+      inputs: [
+        {
+          name: 'ownername',
+          placeholder: 'Enter New Owner Name'
+        },
+        
+      ],
+      buttons: [
+        {
+          text: 'CANCEL',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'TRANSFER',
+          handler: data => {
+            this.jsonbody.args.push(data.ownername);
+            console.log("This is BODY for transfer" + JSON.stringify(this.jsonbody));
+            
+            //making post request for transfer vehicle /part
+            this.httpclient.post(url, this.jsonbody, httpOptions)
+            .subscribe(postResponse => {
+              if( postResponse['returnCode'] == "Success"){
+                let alert = this.alertCtrl.create({
+                  title: 'Transfered Successfully',
+                  subTitle: 'Ownership has been changed from'+this.response["owner"]+' to ' + data.ownername,
+                  buttons: ['Dismiss']
+                });
+                alert.present();
+              }
+            })
+            
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
 }
+
