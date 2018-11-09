@@ -7,17 +7,86 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>info</ion-title>
+    <ion-title>Information</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item *ngFor ="let data of Keys">
-      <b>{{data}}</b> - {{response[data]}}
-    </ion-item>
-  </ion-list>
+  <ion-grid class="nopadding orderrow">
+    <div class="history-wrapper">
+        <ion-row> 
+            <ion-col col-sm-6 *ngIf="resmap.serialNumber!=null">
+                Serial Number:
+              </ion-col>
+              <ion-col col-sm-6  *ngIf="resmap.serialNumber != none;">
+                  {{resmap.serialNumber}}
+              </ion-col>
+            <ion-col col-sm-6 *ngIf="resmap.chassisNumber !=none;">
+                Chassis Number:
+            </ion-col>
+            <ion-col col-sm-6 *ngIf="resmap.chassisNumber !=none;">
+                {{resmap.chassisNumber}}
+            </ion-col>
+            </ion-row> 
+            <ion-row> 
+                <ion-col col-sm-6 *ngIf="resmap.serialNumber != none;">
+                    Assembler:
+                  </ion-col>
+                  <ion-col col-sm-6  *ngIf="resmap.serialNumber != none;">
+                      {{resmap.assembler}}
+                  </ion-col>
+                <ion-col col-sm-6 *ngIf="resmap.chassisNumber !=none;">
+                    Manufacturer:
+                </ion-col>
+                <ion-col col-sm-6 *ngIf="resmap.chassisNumber !=none;">
+                    {{resmap.manufacturer}}
+                </ion-col>
+                </ion-row> 
+                <ion-row> 
+                    <ion-col col-sm-6 *ngIf="resmap.serialNumber != none;">
+                        Manufactured Date:
+                      </ion-col>
+                      <ion-col col-sm-6  *ngIf="resmap.serialNumber != none;">
+                          {{resmap.assemblyDate}}
+                      </ion-col>
+                    <ion-col col-sm-6 *ngIf="resmap.chassisNumber !=none;">
+                        Assembly Date:
+                    </ion-col>
+                    <ion-col col-sm-6 *ngIf="resmap.chassisNumber !=none;">
+                        {{resmap.assemblyDate}}
+                    </ion-col>
+                    </ion-row> 
+                    <ion-row> 
+                        <ion-col col-sm-6 *ngIf="resmap.serialNumber != none;">
+                            Product Name:
+                          </ion-col>
+                          <ion-col col-sm-6  *ngIf="resmap.serialNumber != none;">
+                              {{resmap.name}}
+                          </ion-col>
+                        <ion-col col-sm-6 *ngIf="resmap.chassisNumber !=none;">
+                            Model:
+                        </ion-col>
+                        <ion-col col-sm-6 *ngIf="resmap.chassisNumber !=none;">
+                            {{resmap.model}}
+                        </ion-col>
+                        </ion-row>
+                        <ion-row> 
+                            <ion-col col-sm-6 >
+                               Owner:
+                              </ion-col>
+                              <ion-col col-sm-6 >
+                                  {{resmap.owner}}
+                              </ion-col>
+                              </ion-row>
+                              
+      </div>
+</ion-grid>
+  <!-- <button ion-button *ngIf = "show" (click)='transfer()' >Transfer</button> -->
+  <button ion-button (click) = "history()">Show History</button>
+  <ion-card *ngIf = "show" (swipe)="swipeEvent($event)">
+      <ion-item style="background-color:#26c281; color: white; text-align: center">Swipe right to change ownership<ion-icon name="md-arrow-forward" style="position:absolute;right:3%;"></ion-icon></ion-item>
+    </ion-card>
 
 </ion-content>

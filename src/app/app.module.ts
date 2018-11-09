@@ -18,6 +18,8 @@ import { SettingsPage } from '../pages/settings/settings';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { InfoPage } from '../pages/info/info';
+import { TransferTemplatePage } from '../pages/transfer-template/transfer-template';
+import { HistoryPage } from '../pages/history/history';
 
 
 
@@ -39,7 +41,9 @@ import { Toast } from '@ionic-native/toast';
     SettingsPage,
     LoginPage,
     SignupPage,
-    InfoPage
+    InfoPage,
+    TransferTemplatePage,
+    HistoryPage
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,9 @@ import { Toast } from '@ionic-native/toast';
     SettingsPage,
     LoginPage,
     SignupPage,
-    InfoPage
+    InfoPage,
+    TransferTemplatePage,
+    HistoryPage
     
   ],
   providers: [

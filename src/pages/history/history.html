@@ -1,0 +1,92 @@
+<!--
+  Generated template for the HistoryPage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>History</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid class="nopadding orderrow">
+      <div class="history-wrapper" *ngFor ="let item of resmap;let i = index" >
+          <ion-row> 
+              <ion-col col-sm-6 *ngIf="item.serialNumber != none;">
+                  Serial Number:
+                </ion-col>
+                <ion-col col-sm-6  *ngIf="item.serialNumber != none;">
+                    {{item.serialNumber}}
+                </ion-col>
+              <ion-col col-sm-6 *ngIf="item.chassisNumber !=none;">
+                  Chassis Number:
+              </ion-col>
+              <ion-col col-sm-6 *ngIf="item.chassisNumber !=none;">
+                  {{item.chassisNumber}}
+              </ion-col>
+              </ion-row> 
+              <ion-row> 
+                  <ion-col col-sm-6 *ngIf="item.serialNumber != none;">
+                      Assembler:
+                    </ion-col>
+                    <ion-col col-sm-6  *ngIf="item.serialNumber != none;">
+                        {{item.assembler}}
+                    </ion-col>
+                  <ion-col col-sm-6 *ngIf="item.chassisNumber !=none;">
+                      Manufacturer:
+                  </ion-col>
+                  <ion-col col-sm-6 *ngIf="item.chassisNumber !=none;">
+                      {{item.manufacturer}}
+                  </ion-col>
+                  </ion-row> 
+                  <ion-row> 
+                      <ion-col col-sm-6 *ngIf="item.serialNumber != none;">
+                          Manufactured Date:
+                        </ion-col>
+                        <ion-col col-sm-6  *ngIf="item.serialNumber != none;">
+                            {{item.assemblyDate}}
+                        </ion-col>
+                      <ion-col col-sm-6 *ngIf="item.chassisNumber !=none;">
+                          Assembly Date:
+                      </ion-col>
+                      <ion-col col-sm-6 *ngIf="item.chassisNumber !=none;">
+                          {{item.assemblyDate}}
+                      </ion-col>
+                      </ion-row> 
+                      <ion-row> 
+                          <ion-col col-sm-6 *ngIf="item.serialNumber != none;">
+                              Product Name:
+                            </ion-col>
+                            <ion-col col-sm-6  *ngIf="item.serialNumber != none;">
+                                {{item.name}}
+                            </ion-col>
+                          <ion-col col-sm-6 *ngIf="item.chassisNumber !=none;">
+                              Model:
+                          </ion-col>
+                          <ion-col col-sm-6 *ngIf="item.chassisNumber !=none;">
+                              {{item.model}}
+                          </ion-col>
+                          </ion-row>
+                          <ion-row> 
+                              <ion-col col-sm-6 >
+                                 Owner:
+                                </ion-col>
+                                <ion-col col-sm-6 >
+                                    {{item.owner}}
+                                </ion-col>
+                                </ion-row>
+                                <ion-row> 
+                                    <ion-col col-sm-4 >
+                                     Timestamp:
+                                      </ion-col>
+                                      <ion-col col-sm-8 >
+                                          {{item.Timestamp}}
+                                      </ion-col>
+                                      </ion-row>
+        </div>
+  </ion-grid>
+  </ion-content>
