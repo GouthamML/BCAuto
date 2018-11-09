@@ -5,6 +5,8 @@ import { TransferTemplatePage } from '../transfer-template/transfer-template';
 import { AlertController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http'
 import { HttpHeaders } from '@angular/common/http';
+import { LoadingController } from 'ionic-angular';
+import { HistoryPage } from '../history/history';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -38,15 +40,33 @@ export class InfoPage {
   argsTemp:any;
   credentials:any;
   barCodeData:any;
+  resmap:any;
   show:boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController,  private httpclient:HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController,  private httpclient:HttpClient, public loadingCtrl:LoadingController) {
     this.response = JSON.parse(localStorage.getItem('res'));
     this.response = JSON.parse(this.response['result']['payload']);
+
     console.log(this.response);
     this.test = JSON.stringify(this.response);
     let i;
     this.Keys = Object.keys(this.response);
-
+    console.log("keys\n" + this.Keys);
+    this.resmap = this.Keys.map(element => {
+      return {
+          chassisNumber:this.response.chassisNumber,
+          serialNumber:this.response.serialNumber,
+          manufacturer:this.response.manufacturer,
+          model:this.response.model,
+          name:this.response.name,
+          assemblyDate:this.response.assemblyDate,
+          owner:this.response.owner,
+          assembler:this.response.assembler,   
+          // Timestamp: element.          
+      };
+    }).reverse();
+    this.resmap = this.resmap[0];
+    
+    console.log(this.resmap);
     this.barCodeData = JSON.parse(localStorage.getItem('barCode'));
     this.credentials = JSON.parse(localStorage.getItem('credentials'));
     this.jsonbody = JSON.parse(localStorage.getItem('body'));
@@ -77,6 +97,10 @@ export class InfoPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad InfoPage');
   }
+
+  history(){
+    this.navCtrl.push(HistoryPage);
+  }
   transfer(){
     
 
@@ -104,11 +128,16 @@ export class InfoPage {
           handler: data => {
             this.jsonbody.args.push(data.ownername);
             console.log("This is BODY for transfer" + JSON.stringify(this.jsonbody));
-            
+            let loading = this.loadingCtrl.create({
+              content: 'Please wait...'
+            });
+          
+            loading.present();
             //making post request for transfer vehicle /part
             this.httpclient.post(url, this.jsonbody, httpOptions)
             .subscribe(postResponse => {
               if( postResponse['returnCode'] == "Success"){
+                loading.dismiss();
                 let alert = this.alertCtrl.create({
                   title: 'Transfered Successfully',
                   subTitle: 'Ownership has been changed from'+this.response["owner"]+' to ' + data.ownername,
@@ -149,11 +178,17 @@ export class InfoPage {
           handler: data => {
             this.jsonbody.args.push(data.ownername);
             console.log("This is BODY for transfer" + JSON.stringify(this.jsonbody));
-            
+            let loading = this.loadingCtrl.create({
+              content: 'Working on it....'
+            });
+          
+            loading.present();
+          
             //making post request for transfer vehicle /part
             this.httpclient.post(url, this.jsonbody, httpOptions)
             .subscribe(postResponse => {
               if( postResponse['returnCode'] == "Success"){
+                loading.dismiss();
                 let alert = this.alertCtrl.create({
                   title: 'Transfered Successfully',
                   subTitle: 'Ownership has been changed from'+this.response["owner"]+' to ' + data.ownername,

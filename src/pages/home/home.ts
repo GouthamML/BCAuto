@@ -44,6 +44,11 @@ export class HomePage {
   adding to blockchain
   */
  openAlertAddOBC(){
+  let loading = this.loadingCtrl.create({
+    content: 'Adding to Blockchain...'
+  });
+
+  loading.present();
   let url = "https://2E42370EAFB342A99759C7B7378C46D0.blockchain.ocp.oraclecloud.com:443/restproxy1/bcsgw/rest/v1/transaction/invocation";
   let barcode = JSON.parse(localStorage.getItem('barCode'));
   
@@ -69,6 +74,7 @@ export class HomePage {
 
   this.httpclient.post(url, body, httpOptions)
   .subscribe(response => {
+    loading.dismiss();
     console.log("response for adding blockchain###\n" +  JSON.stringify(response));
     if(response['returnCode'] == "Success"){
       let alert = this.alertCtrl.create({
@@ -161,6 +167,16 @@ scan() {
      this.credentials = JSON.parse(localStorage.getItem('credentials'));
       this.barcodeScanner.scan().then((barcodedata) => {
       this.jsonOfBarcode = JSON.parse(barcodedata.text);
+
+      //Adding loder after scanning QR code
+      let loading = this.loadingCtrl.create({
+        content: 'Fetching information....'
+      });
+    
+      loading.present();
+    
+      
+      //
       
       let url = "https://2E42370EAFB342A99759C7B7378C46D0.blockchain.ocp.oraclecloud.com:443/restproxy1/bcsgw/rest/v1/transaction/invocation";
       console.log('###############################');
@@ -201,6 +217,7 @@ scan() {
       
       this.httpclient.post(url,jsonBody,httpOptions)
       .subscribe(response => {
+        loading.dismiss();
         localStorage.setItem('res', JSON.stringify(response));
         localStorage.setItem('body', JSON.stringify(jsonBody));
         console.log("Credentials \n"+this.credentials["username"]);

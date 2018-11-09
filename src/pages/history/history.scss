@@ -1,0 +1,23 @@
+page-history {
+    .history-wrapper {
+        border-radius: 5px;
+        box-shadow: 0 0 5px 2px #468cc5;
+        margin: 0.5em;
+        padding: 0.5em;
+    }
+   /* ion-navbar button {
+        position: absolute !important;
+        span {
+            z-index: 9999;
+        }
+    }*/
+    ion-title {
+        position: absolute;
+        top: 0;
+        left: 20%;
+        width: 60%;
+        height: 100%;
+        text-align: center;
+      }
+
+}
