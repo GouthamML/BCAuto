@@ -4,6 +4,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Toast } from '@ionic-native/toast';
 import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import 'rxjs/add/operator/map'
 
@@ -34,10 +35,11 @@ export class HomePage {
   test:any;
   output: any;
   code:any;
+  locationOfDevice:any;
 
 
   constructor(public navCtrl: NavController, private alertCtrl: AlertController, private barcodeScanner: BarcodeScanner,
-    private toast: Toast, private httpclient:HttpClient, public loadingCtrl: LoadingController) {
+    private toast: Toast, private httpclient:HttpClient, public loadingCtrl: LoadingController, private geolocation: Geolocation) {
     //  this.callFunc();
   }
   /*
@@ -68,6 +70,8 @@ export class HomePage {
     console.log("barcode data in loop\n" + barcode[Object.keys(barcode)[i]]);
     body["args"][i] = barcode[Object.keys(barcode)[i]];
   }
+  body["args"].push(this.locationOfDevice);
+  console.log("argss\n" + body["args"]);
 
   console.log("JSONbody for adding to blockchain#####\n" + JSON.stringify(body));
 
@@ -99,7 +103,7 @@ export class HomePage {
 
   openAlertSuccess() {
     let alert = this.alertCtrl.create({
-      title: 'Part Exists',
+      title: 'Already Exists',
       message: 'Do you want to know more about it?',
       buttons: [
         {
@@ -167,6 +171,22 @@ scan() {
      this.credentials = JSON.parse(localStorage.getItem('credentials'));
       this.barcodeScanner.scan().then((barcodedata) => {
       this.jsonOfBarcode = JSON.parse(barcodedata.text);
+
+      //getting location from device
+      this.geolocation.getCurrentPosition().then((resp) => {
+        this.httpclient.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + resp.coords.latitude + ',' + resp.coords.longitude + '&sensor=true&key=AIzaSyCFxSOEO_F6DlWrNlxfj3tDTcS_3BqZF_c')
+        .subscribe(data => {
+          console.log(data);
+          this.locationOfDevice = data["results"][4]["address_components"][1]["long_name"];
+          
+          console.log("location#########\n"+this.locationOfDevice);
+        })
+        
+       }).catch((error) => {
+         console.log('Error getting location', error);
+       });
+
+       
 
       //Adding loder after scanning QR code
       let loading = this.loadingCtrl.create({
