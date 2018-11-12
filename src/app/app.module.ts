@@ -29,6 +29,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { WeatherProvider } from '../providers/weather/weather';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Toast } from '@ionic-native/toast';
+import { Geolocation } from '@ionic-native/geolocation';
+
 
 
 @NgModule({
@@ -70,12 +72,15 @@ import { Toast } from '@ionic-native/toast';
   ],
   providers: [
     StatusBar,
+    Geolocation,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     WeatherProvider,
     BarcodeScanner,
   Toast,
-  HTTP
+  HTTP,
+  
+ 
   ]
 })
 export class AppModule {}

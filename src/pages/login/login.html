@@ -12,36 +12,29 @@
 
 
 <ion-content  class="loginPage">
-  <div class="heading">
-    <h1 style="font-size: 3em; text-align: center" >AUTOMOTIVE</h1>
-    <h4 style="text-align: center;bottom: 3em;">Blockchain</h4>
-  </div>
-   
-        
-        <div class="fields">
+  <div class="backgroundLogin">                   
+      <img src="assets/imgs/black.png" class="blackImage">
+      <div>
+        <div class="heading">
+          <h1 style="font-size: 3em; text-align: center;" >AUTOMOTIVE</h1>
+          <h4 style="text-align: center;">Blockchain</h4>
+        </div>
+          <div class="fields">
+              
             
-            <ion-item class="itemClass" width-100>
-                <ion-label color="#c1c0cd" floating style="text-align: center;">Username</ion-label>
-                <ion-input type = "text" [(ngModel)]="credentials.username" name = "username"></ion-input>
-              </ion-item>
-          
-              <ion-item class="itemClass">
-                  <ion-label color="#c1c0cd" floating style="text-align: center;">password</ion-label>
-                  <ion-input type="password" [(ngModel)]="credentials.password" name = "password"></ion-input>
+              <ion-item class="itemClass" width-100>
+                  <ion-label color="#c1c0cd" floating style="text-align: center;">Username</ion-label>
+                  <ion-input type = "text" [(ngModel)]="credentials.username" name = "username"></ion-input>
                 </ion-item>
-                
-                <button ion-button block style="left:5%; width:95%;margin-top:10%;" (click)='openSignup()'>Login</button>
-                <p style="color: #c1c0cd; float: right;">New here? <a href="#" class>Signup</a></p>
-            </div>
-            <div class="backgroundLogin">
-        
-                <div class="imageOne image">
-                    <img src="assets/imgs/black.png" style=" max-width:100%; border:0;">
-                  </div>
-                
-                  <!-- <div class="imageTwo image">
-                  <img src="../../assets/imgs/Untitled.png" >
-                </div> -->
+            
+                <ion-item class="itemClass">
+                    <ion-label color="#c1c0cd" floating style="text-align: center;">password</ion-label>
+                    <ion-input type="password" [(ngModel)]="credentials.password" name = "password"></ion-input>
+                  </ion-item>
                   
-                  </div>
+                  <button ion-button block style="margin-top:10%;" (click)='openSignup()'>Login</button>
+                  <p style="color: #c1c0cd; float: right;">New here? <a href="#" class>Signup</a></p>
+              </div>
+      </div>
+    </div>      
 </ion-content>
