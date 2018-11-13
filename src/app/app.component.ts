@@ -6,6 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { InfoPage } from '../pages/info/info';
+import { PartToVehiclePage } from '../pages/part-to-vehicle/part-to-vehicle';
+
 
 
 
