@@ -20,6 +20,7 @@ import { SignupPage } from '../pages/signup/signup';
 import { InfoPage } from '../pages/info/info';
 import { TransferTemplatePage } from '../pages/transfer-template/transfer-template';
 import { HistoryPage } from '../pages/history/history';
+import { PartToVehiclePage } from '../pages/part-to-vehicle/part-to-vehicle';
 
 
 
@@ -45,7 +46,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     SignupPage,
     InfoPage,
     TransferTemplatePage,
-    HistoryPage
+    HistoryPage,
+    PartToVehiclePage
   ],
   imports: [
     BrowserModule,
@@ -67,8 +69,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     SignupPage,
     InfoPage,
     TransferTemplatePage,
-    HistoryPage
-    
+    HistoryPage,
+    PartToVehiclePage
   ],
   providers: [
     StatusBar,
