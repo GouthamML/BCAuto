@@ -4,6 +4,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { HttpClient } from '@angular/common/http'
 import { HttpHeaders } from '@angular/common/http';
 import { AlertController } from 'ionic-angular';
+import { ListpartsPage } from '../listparts/listparts';
+
 
 
 /**
@@ -122,6 +124,10 @@ this.barcodeScanner.scan().then((barcodedata) => {
       }
     })
   })
+  }
+
+  listParts(){
+    this.navCtrl.push(ListpartsPage);
   }
 
   ionViewDidLoad() {

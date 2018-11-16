@@ -45,7 +45,7 @@ export class HistoryPage {
    console.log(this.jsonOfBarcode);
    let jsonBody = {
      'channel' : 'default',
-     'chaincode' : 'chain1',
+     'chaincode' : 'chain4',
      'args' : []
    }; 
 
