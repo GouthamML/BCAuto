@@ -16,5 +16,12 @@
 <ion-content padding>
   <p class="toolIcon">  <ion-icon name="ios-hammer"></ion-icon>  <ion-icon style="font-size: 0.5em" name="md-arrow-dropright"></ion-icon>  <ion-icon style="font-size: 0.5em" name="md-arrow-dropright"></ion-icon> <ion-icon name="ios-car"></ion-icon>  </p>
   <button ion-button block (click)="transferPartToVehicle()"><ion-icon name="md-camera" style="margin-right: 5%"></ion-icon>Scan Part</button>
-
+  <ion-card (click)="listParts()"> 
+    <ion-card-header>
+      List Parts
+    </ion-card-header>
+    <ion-card-content>
+      Scan the vehicle to list the associated vehicle parts
+    </ion-card-content>
+  </ion-card>
 </ion-content>

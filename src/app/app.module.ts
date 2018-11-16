@@ -21,6 +21,7 @@ import { InfoPage } from '../pages/info/info';
 import { TransferTemplatePage } from '../pages/transfer-template/transfer-template';
 import { HistoryPage } from '../pages/history/history';
 import { PartToVehiclePage } from '../pages/part-to-vehicle/part-to-vehicle';
+import { ListpartsPage } from '../pages/listparts/listparts';
 
 
 
@@ -47,7 +48,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     InfoPage,
     TransferTemplatePage,
     HistoryPage,
-    PartToVehiclePage
+    PartToVehiclePage,
+    ListpartsPage
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     InfoPage,
     TransferTemplatePage,
     HistoryPage,
-    PartToVehiclePage
+    PartToVehiclePage,
+    ListpartsPage
   ],
   providers: [
     StatusBar,

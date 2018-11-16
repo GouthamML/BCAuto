@@ -128,7 +128,7 @@ export class HomePage {
 
   openAlertFailure() {
     let alert = this.alertCtrl.create({
-      title: 'Part Doesn\'t Exists',
+      title: 'Asset Doesn\'t Exists',
       message: 'Do you want to add it to OBC?',
       buttons: [
         {
@@ -207,7 +207,7 @@ scan() {
       */
      let jsonBody = {
        'channel' : 'default',
-       'chaincode' : 'chain1',
+       'chaincode' : 'chain4',
        'args' : []
      }; 
 
