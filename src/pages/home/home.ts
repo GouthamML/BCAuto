@@ -15,7 +15,7 @@ import { InfoPage } from '../info/info';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Authorization': 'Basic Y2xvdWQuYWRtaW46cHVycGxlQDhGYXZPcg==',
+    'Authorization': 'Basic Y2xvdWQuYWRtaW46c2lja2xZQDhIb09WRXI=',
     'Content-Type' : 'application/json'    
 
   })
@@ -51,7 +51,7 @@ export class HomePage {
   });
 
   loading.present();
-  let url = "https://2E42370EAFB342A99759C7B7378C46D0.blockchain.ocp.oraclecloud.com:443/restproxy1/bcsgw/rest/v1/transaction/invocation";
+  let url = "https://F4586B0D8CC042C891B307CC61F2750C.blockchain.ocp.oraclecloud.com:443/restproxy1/bcsgw/rest/v1/transaction/invocation";
   let barcode = JSON.parse(localStorage.getItem('barCode'));
   
   let body = JSON.parse(localStorage.getItem('body'));
@@ -198,7 +198,7 @@ scan() {
       
       //
       
-      let url = "https://2E42370EAFB342A99759C7B7378C46D0.blockchain.ocp.oraclecloud.com:443/restproxy1/bcsgw/rest/v1/transaction/invocation";
+      let url = "https://F4586B0D8CC042C891B307CC61F2750C.blockchain.ocp.oraclecloud.com:443/restproxy1/bcsgw/rest/v1/transaction/invocation";
       console.log('###############################');
       /*
       
@@ -207,7 +207,7 @@ scan() {
       */
      let jsonBody = {
        'channel' : 'default',
-       'chaincode' : 'chain4',
+       'chaincode' : 'car1',
        'args' : []
      }; 
 
@@ -269,12 +269,12 @@ scan() {
  
 
   httpClientPostMethod() {
-    let url = "https://2E42370EAFB342A99759C7B7378C46D0.blockchain.ocp.oraclecloud.com:443/restproxy1/bcsgw/rest/v1/transaction/invocation";
+    let url = "https://F4586B0D8CC042C891B307CC61F2750C.blockchain.ocp.oraclecloud.com:443/restproxy1/bcsgw/rest/v1/transaction/invocation";
 
     let jsonbody = {
       
       "channel":"default",
-      "chaincode":"chain",
+      "chaincode":"car1",
       "method":"readVehiclePart",
       "args":["ser123"],
       "chaincodeVer":"v1"

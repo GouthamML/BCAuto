@@ -16,7 +16,7 @@ import { LoadingController } from 'ionic-angular';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Authorization': 'Basic Y2xvdWQuYWRtaW46cHVycGxlQDhGYXZPcg==',
+    'Authorization': 'Basic Y2xvdWQuYWRtaW46c2lja2xZQDhIb09WRXI=',
     'Content-Type' : 'application/json'    
 
   })
@@ -33,11 +33,11 @@ export class ListpartsPage {
   public partNumber = 1;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private barcodescanner: BarcodeScanner, private httpclient: HttpClient, private alertController: AlertController, public loadingCtrl: LoadingController) {
-    let url = "https://2E42370EAFB342A99759C7B7378C46D0.blockchain.ocp.oraclecloud.com:443/restproxy1/bcsgw/rest/v1/transaction/invocation";
+    let url = "https://F4586B0D8CC042C891B307CC61F2750C.blockchain.ocp.oraclecloud.com:443/restproxy1/bcsgw/rest/v1/transaction/invocation";
 
     let jsonBody = {
       'channel' : 'default',
-      'chaincode' : 'chain4',
+      'chaincode' : 'car1',
       'method' : 'getHistoryForRecord',
       'args' : [],
       "chaincodeVer":"v1"
